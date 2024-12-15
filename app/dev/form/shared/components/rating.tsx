@@ -40,14 +40,14 @@ export default function MyRating() {
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Controller
         name="MyRating"
         control={control}
         render={({ field }) => (
           <>
             <FormControl>
-              <FormLabel>Rating</FormLabel>
+              <FormLabel sx={{ mb: 3 }}>Rating</FormLabel>
               <Rating
                 {...field}
                 value={field.value}
@@ -64,7 +64,7 @@ export default function MyRating() {
         )}
       />
       <Box mt={2}>
-        <Button variant="contained" onClick={handleSubmit(onSubmit)}>
+        <Button variant="contained" type="submit">
           Submit
         </Button>
       </Box>

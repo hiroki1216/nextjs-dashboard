@@ -7,14 +7,16 @@ export default function Page() {
   return (
     <main>
       <div className="mb-4">
-        <Box sx={{ my: 6 }}>
-          <MyRating />
-        </Box>
-        <Box sx={{ my: 6 }}>
-          <MyRatingNonCtlState />
-        </Box>
-        <Box sx={{ my: 6 }}>
-          <MyRatingNonCtlWatch />
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Box sx={{ my: 6 }}>
+            <MyRating />
+          </Box>
+          <Box sx={{ my: 6 }}>
+            <MyRatingNonCtlState />
+          </Box>
+          <Box sx={{ my: 6 }}>
+            <MyRatingNonCtlWatch />
+          </Box>
         </Box>
       </div>
     </main>
