@@ -1,11 +1,21 @@
+import { Box } from "@mui/material";
 import MyRating from "./shared/components/rating";
+import MyRatingNonCtlState from "./shared/components/rating-non-ctl-state";
+import MyRatingNonCtlWatch from "./shared/components/rating-non-ctl-watch";
 
 export default function Page() {
   return (
     <main>
-      <h1>Form</h1>
       <div className="mb-4">
-        <MyRating />
+        <Box sx={{ my: 6 }}>
+          <MyRating />
+        </Box>
+        <Box sx={{ my: 6 }}>
+          <MyRatingNonCtlState />
+        </Box>
+        <Box sx={{ my: 6 }}>
+          <MyRatingNonCtlWatch />
+        </Box>
       </div>
     </main>
   );
