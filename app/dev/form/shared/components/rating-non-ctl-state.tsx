@@ -35,6 +35,9 @@ export default function MyRatingNonCtlState() {
     },
   });
 
+  // getValuesは、react-hook-formのメソッドで、フォームの値を取得するために使用されるが、再レンダリングが発生ないので、
+  // Ratingコンポーネントの値を更新するためには、useStateを使用する必要がある。
+  // useStateは、値の変更を検知して再レンダリングを発生させるため、Ratingコンポーネントの値を更新することができる。
   const [ratingValue, setRatingValue] = useState(getValues("MyRaringNotCtl"));
 
   const router = useRouter();

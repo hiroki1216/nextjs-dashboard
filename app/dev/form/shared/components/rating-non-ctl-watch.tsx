@@ -34,6 +34,9 @@ export default function MyRatingNonCtlWatch() {
     },
   });
 
+  // watchは、react-hook-formのメソッドで、フォームの値を監視するために使用される。
+  // Ratingコンポーネントの値を更新するためには、useStateを使用する必要がなく、watchを使用することで、フォームの値を監視して、
+  // watchは、値の変更を検知すると再レンダリングを発生させることができる。
   const ratingValue = watch("MyRaringNotCtl");
 
   const router = useRouter();
