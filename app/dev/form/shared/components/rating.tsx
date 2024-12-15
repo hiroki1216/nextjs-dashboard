@@ -34,7 +34,6 @@ export default function MyRating() {
   const router = useRouter();
 
   const onSubmit = (data: Schema) => {
-    console.log(data);
     if (data.MyRating === 0) return;
     const rate = new URLSearchParams({ rate: data.MyRating.toString() });
     router.push(`/dashboard?${rate}`);
