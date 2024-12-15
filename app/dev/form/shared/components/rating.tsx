@@ -1,7 +1,14 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Button, Rating } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormHelperText,
+  FormLabel,
+  Rating,
+} from "@mui/material";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -35,24 +42,31 @@ export default function MyRating() {
 
   return (
     <form>
-      <Box mb={2}>Rating</Box>
       <Controller
         name="MyRating"
         control={control}
         render={({ field }) => (
           <>
-            <Rating
-              {...field}
-              value={field.value}
-              onChange={(_, value) => field.onChange(value ?? 0)}
-            />
-            {errors.MyRating && <p>{errors.MyRating.message}</p>}
+            <FormControl>
+              <FormLabel>Rating</FormLabel>
+              <Rating
+                {...field}
+                value={field.value}
+                onChange={(_, value) => field.onChange(value ?? 0)}
+              />
+              <FormHelperText
+                id="my-helper-text"
+                error={!!errors?.MyRating?.message}
+              >
+                {errors?.MyRating?.message}
+              </FormHelperText>
+            </FormControl>
           </>
         )}
       />
       <Box mt={2}>
         <Button variant="contained" onClick={handleSubmit(onSubmit)}>
-          送信
+          Submit
         </Button>
       </Box>
     </form>
