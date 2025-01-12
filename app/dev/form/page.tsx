@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import MyRating from "./shared/components/rating";
 import MyRatingNonCtlState from "./shared/components/rating-non-ctl-state";
 import MyRatingNonCtlWatch from "./shared/components/rating-non-ctl-watch";
+import { DynamicForm } from "./shared/components/dynamic-form/dynamic-form";
 
 export default function Page() {
   return (
@@ -16,6 +17,9 @@ export default function Page() {
           </Box>
           <Box sx={{ my: 6 }}>
             <MyRatingNonCtlWatch />
+          </Box>
+          <Box sx={{ my: 6 }}>
+            <DynamicForm />
           </Box>
         </Box>
       </div>
