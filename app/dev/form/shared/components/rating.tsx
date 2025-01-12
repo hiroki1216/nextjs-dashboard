@@ -47,7 +47,7 @@ export default function MyRating() {
         render={({ field }) => (
           <>
             <FormControl>
-              <FormLabel sx={{ mb: 3 }}>Rating</FormLabel>
+              <FormLabel>Rating</FormLabel>
               <Rating
                 {...field}
                 value={field.value}
