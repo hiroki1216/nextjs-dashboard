@@ -3,17 +3,12 @@ import { DynamicForm } from "./shared/components/dynamic-form/dynamic-form";
 import MyRating from "./shared/components/rating";
 import MyRatingNonCtlState from "./shared/components/rating-non-ctl-state";
 import MyRatingNonCtlWatch from "./shared/components/rating-non-ctl-watch";
+import type { DynamicFormRecordsObj } from "./shared/components/types/dynamic-form";
 
-type RecordsObj = {
-  records?: {
-    unitPrice: number;
-    amount: number;
-  }[];
-};
 export default function Page() {
   // レコードのテストデータ(空の場合は空のオブジェクトを渡す)
-  // const recordsObj: RecordsObj = {};
-  const recordsObj: RecordsObj = {
+  // const recordsObj: DynamicFormRecordsObj = {};
+  const recordsObj: DynamicFormRecordsObj = {
     records: [
       { unitPrice: 100, amount: 1 },
       { unitPrice: 200, amount: 2 },
