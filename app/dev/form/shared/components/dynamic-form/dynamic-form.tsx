@@ -35,8 +35,15 @@ const schema = z.object({
 });
 
 export type Schema = z.infer<typeof schema>;
+type Props = {
+  records?: {
+    unitPrice: number;
+    amount: number;
+  }[];
+};
 
-export function DynamicForm() {
+export function DynamicForm(props: Props) {
+  const { records } = props;
   const {
     register,
     control,
@@ -45,7 +52,9 @@ export function DynamicForm() {
   } = useForm<Schema>({
     resolver: zodResolver(schema),
     defaultValues: {
-      records: [{ unitPrice: undefined as never, amount: undefined as never }],
+      records: records
+        ? records
+        : [{ unitPrice: undefined as never, amount: undefined as never }],
     },
   });
   const { fields, append, remove } = useFieldArray({
