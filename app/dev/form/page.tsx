@@ -1,10 +1,20 @@
 import { Box } from "@mui/material";
+import { DynamicForm } from "./shared/components/dynamic-form/dynamic-form";
 import MyRating from "./shared/components/rating";
 import MyRatingNonCtlState from "./shared/components/rating-non-ctl-state";
 import MyRatingNonCtlWatch from "./shared/components/rating-non-ctl-watch";
-import { DynamicForm } from "./shared/components/dynamic-form/dynamic-form";
+import type { DynamicFormRecordsObj } from "./shared/components/types/dynamic-form";
 
 export default function Page() {
+  // レコードのテストデータ(空の場合は空のオブジェクトを渡す)
+  // const recordsObj: DynamicFormRecordsObj = {};
+  const recordsObj: DynamicFormRecordsObj = {
+    records: [
+      { unitPrice: 100, amount: 1 },
+      { unitPrice: 200, amount: 2 },
+    ],
+  };
+
   return (
     <main>
       <div className="mb-4">
@@ -19,7 +29,7 @@ export default function Page() {
             <MyRatingNonCtlWatch />
           </Box>
           <Box sx={{ my: 6 }}>
-            <DynamicForm />
+            <DynamicForm records={recordsObj.records} />
           </Box>
         </Box>
       </div>
