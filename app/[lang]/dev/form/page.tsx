@@ -7,7 +7,7 @@ import MyRatingNonCtlWatch from "./shared/components/rating-non-ctl-watch";
 import type { DynamicFormRecordsObj } from "./shared/components/types/dynamic-form";
 
 type PageProps = {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 };
 
 export default async function Page({ params }: PageProps) {
@@ -20,6 +20,7 @@ export default async function Page({ params }: PageProps) {
     ],
   };
   // NOTE: パスパラメータを取得する際には、Nextjs ver.15以降はawaitを使用する必要あり。
+  // see https://nextjs.org/docs/messages/sync-dynamic-apis
   // see https://stackoverflow.com/questions/79143162/route-locale-used-params-locale-params-should-be-awaited-before-using
   const { lang } = await params;
   const { t } = await getTranslation(lang);
