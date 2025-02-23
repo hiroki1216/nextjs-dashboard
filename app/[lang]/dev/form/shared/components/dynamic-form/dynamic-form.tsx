@@ -1,8 +1,8 @@
 "use client";
+import i18next from "@/app/i18n/config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-
 import {
   Box,
   Button,
@@ -13,11 +13,13 @@ import {
   OutlinedInput,
 } from "@mui/material";
 
-import { DynamicFormTotalAmount } from "./dynamic-form-total-amount";
-import { DynamicFormTotalCost } from "./dynamic-form-total-cost";
+import { useTranslation } from "@/app/i18n/client";
+import { useLanguage } from "@/context/language-context";
 
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
+import { DynamicFormTotalAmount } from "./dynamic-form-total-amount";
+import { DynamicFormTotalCost } from "./dynamic-form-total-cost";
 
 const recordSchema = z.object({
   unitPrice: z.preprocess(
@@ -66,6 +68,11 @@ export function DynamicForm(props: Props) {
     console.log(data);
   }
 
+  const { language: lang, setLanguage } = useLanguage();
+  const { t } = useTranslation(lang);
+  const price = t("dynamic-form:price");
+  const amount = t("dynamic-form:amount");
+
   return (
     <form onSubmit={handleSubmit(submitRecords)}>
       {fields.map((field, index) => {
@@ -75,7 +82,7 @@ export function DynamicForm(props: Props) {
             sx={{ display: "flex", alignItems: "center", my: 2 }}
           >
             <FormControl sx={{ mr: 2 }}>
-              <InputLabel>Unit Price</InputLabel>
+              <InputLabel>{price}</InputLabel>
               <OutlinedInput
                 {...register(`records.${index}.unitPrice`, {
                   valueAsNumber: true,
@@ -90,7 +97,7 @@ export function DynamicForm(props: Props) {
               </FormHelperText>
             </FormControl>
             <FormControl>
-              <InputLabel>Amount</InputLabel>
+              <InputLabel>{amount}</InputLabel>
               <OutlinedInput
                 {...register(`records.${index}.amount`, {
                   valueAsNumber: true,
