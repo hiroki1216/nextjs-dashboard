@@ -1,4 +1,4 @@
-import SideNav from "@/app/ui/dashboard/sidenav";
+import NavBar from "@/app/[lang]/dev/form/ui/nav-bar";
 import { LanguageProvider } from "@/context/language-context";
 import { JSX } from "react";
 
@@ -13,14 +13,10 @@ export default async function Layout(props: LayoutProps): Promise<JSX.Element> {
 
   return (
     <div lang="ja">
-      <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-        <div className="w-full flex-none md:w-64">
-          <SideNav />
-        </div>
-        <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
-          <LanguageProvider initialLanguage={lang}>{children}</LanguageProvider>
-        </div>
-      </div>
+      <LanguageProvider initialLanguage={lang}>
+        <NavBar />
+        {children}
+      </LanguageProvider>
     </div>
   );
 }
