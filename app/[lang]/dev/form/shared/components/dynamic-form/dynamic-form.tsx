@@ -1,5 +1,4 @@
 "use client";
-import i18next from "@/app/i18n/config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
@@ -68,7 +67,7 @@ export function DynamicForm(props: Props) {
     console.log(data);
   }
 
-  const { language: lang, setLanguage } = useLanguage();
+  const { language: lang } = useLanguage();
   const { t } = useTranslation(lang);
   const price = t("dynamic-form:price");
   const amount = t("dynamic-form:amount");
