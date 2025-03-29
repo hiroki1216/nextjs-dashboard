@@ -1,6 +1,7 @@
-import NavBar from "@/app/[lang]/dev/form/ui/nav-bar";
 import { LanguageProvider } from "@/context/language-context";
+import { CssBaseline } from "@mui/material";
 import { JSX } from "react";
+import AppContainer from "./ui/app-container";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -10,12 +11,11 @@ type LayoutProps = {
 export default async function Layout(props: LayoutProps): Promise<JSX.Element> {
   const { lang } = await props.params;
   const { children } = props;
-
   return (
     <div lang="ja">
       <LanguageProvider initialLanguage={lang}>
-        <NavBar />
-        {children}
+        <CssBaseline />
+        <AppContainer>{children}</AppContainer>
       </LanguageProvider>
     </div>
   );
