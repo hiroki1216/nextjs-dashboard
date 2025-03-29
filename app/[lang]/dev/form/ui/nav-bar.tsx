@@ -15,6 +15,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
+import AppLogo from "./app-logo";
 
 export default function NavBar() {
   const { language: lang } = useLanguage();
@@ -119,7 +120,7 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar color="inherit">
+      <AppBar color="inherit" position="fixed">
         <Toolbar>
           <IconButton
             size="large"
@@ -130,13 +131,14 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton>
+          <AppLogo />
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            ENPRO
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
