@@ -12,7 +12,7 @@ export default function ScrollTopButton() {
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     const anchor = (
-      (event.target as HTMLDivElement).ownerDocument || document
+      (event.currentTarget as HTMLDivElement).ownerDocument || document
     ).querySelector("#back-to-top-anchor");
 
     if (anchor) {
