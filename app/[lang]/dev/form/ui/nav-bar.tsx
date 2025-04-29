@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "@/app/i18n/client";
 import AppLogo from "./app-logo";
 
 export default function NavBar() {
