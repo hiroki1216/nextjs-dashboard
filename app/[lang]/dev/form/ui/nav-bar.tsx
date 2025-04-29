@@ -1,28 +1,43 @@
 "use client";
+import { DRAWER_WIDTH } from "@/app/constants/styles";
+import { useTranslation } from "@/app/i18n/client";
 import { useLanguage } from "@/context/language-context";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import AppBar from "@mui/material/AppBar";
-import Badge from "@mui/material/Badge";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import * as React from "react";
-import { useTranslation } from "@/app/i18n/client";
+import {
+  Badge,
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  AppBar as MuiAppBar,
+  AppBarProps as MuiAppBarProps,
+  styled,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
 import AppLogo from "./app-logo";
+import CustomDrawer from "./custom-drawer";
 
-export default function NavBar() {
+type Props = {
+  isDrawerOpen: boolean;
+  handleDrawerToggle: () => void;
+};
+
+export default function NavBar(props: Props) {
+  const { isDrawerOpen, handleDrawerToggle } = props;
+  interface AppBarProps extends MuiAppBarProps {
+    open?: boolean;
+  }
   const { language: lang } = useLanguage();
   const { t } = useTranslation(lang);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-    React.useState<null | HTMLElement>(null);
+    useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -44,10 +59,33 @@ export default function NavBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const AppBar = styled(MuiAppBar, {
+    shouldForwardProp: (prop) => prop !== "open",
+  })<AppBarProps>(({ theme }) => ({
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    variants: [
+      {
+        props: { open: true },
+        style: {
+          width: `calc(100% - ${DRAWER_WIDTH}px)`,
+          marginLeft: `${DRAWER_WIDTH}px`,
+          transition: theme.transitions.create(["margin", "width"], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+          }),
+        },
+      },
+    ],
+  }));
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
-      anchorEl={anchorEl}
+      //エラーになるので一旦コメントアウト
+      // anchorEl={anchorEl}
       anchorOrigin={{
         vertical: "top",
         horizontal: "right",
@@ -69,7 +107,8 @@ export default function NavBar() {
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
-      anchorEl={mobileMoreAnchorEl}
+      //エラーになるので一旦コメントアウト
+      // anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: "top",
         horizontal: "right",
@@ -120,14 +159,15 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar color="inherit" position="fixed">
+      <AppBar color="inherit" position="fixed" open={isDrawerOpen}>
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={[{ mr: 2 }, isDrawerOpen && { display: "none" }]}
+            onClick={handleDrawerToggle}
           >
             <MenuIcon />
           </IconButton>
@@ -185,6 +225,10 @@ export default function NavBar() {
             </IconButton>
           </Box>
         </Toolbar>
+        <CustomDrawer
+          isDrawerOpen={isDrawerOpen}
+          handleDrawerToggle={handleDrawerToggle}
+        />
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
