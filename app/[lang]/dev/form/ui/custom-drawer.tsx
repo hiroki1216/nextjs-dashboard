@@ -1,4 +1,4 @@
-"use clinent";
+"use client";
 import { DRAWER_WIDTH } from "@/app/constants/styles";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
