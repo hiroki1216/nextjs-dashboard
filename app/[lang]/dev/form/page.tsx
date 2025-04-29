@@ -27,24 +27,24 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <main>
-      <div className="text-2xl font-bold">{t("common:title")}</div>
-      <div className="mb-4">
+      <Box
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
+        <div className="text-2xl font-bold">{t("common:title")}</div>
         <div className="text-2xl font-bold">{lang}</div>
-        <Box display="flex" flexDirection="column" alignItems="center">
-          <Box sx={{ my: 6 }}>
-            <MyRating />
-          </Box>
-          <Box sx={{ my: 6 }}>
-            <MyRatingNonCtlState />
-          </Box>
-          <Box sx={{ my: 6 }}>
-            <MyRatingNonCtlWatch />
-          </Box>
-          <Box sx={{ my: 6 }}>
-            <DynamicForm records={recordsObj.records} />
-          </Box>
+        <Box sx={{ my: 6 }}>
+          <MyRating />
         </Box>
-      </div>
+        <Box sx={{ my: 6 }}>
+          <MyRatingNonCtlState />
+        </Box>
+        <Box sx={{ my: 6 }}>
+          <MyRatingNonCtlWatch />
+        </Box>
+        <Box sx={{ my: 6 }}>
+          <DynamicForm records={recordsObj.records} />
+        </Box>
+      </Box>
     </main>
   );
 }
