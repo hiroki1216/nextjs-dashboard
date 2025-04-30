@@ -1,8 +1,9 @@
 "use client";
 import { DRAWER_WIDTH } from "@/app/constants/styles";
-import { styled } from "@mui/material";
+import { styled, Toolbar } from "@mui/material";
 import { useState } from "react";
 import NavBar from "./nav-bar";
+import ScrollTopButton from "./scroll-top-button";
 
 export default function Container({ children }: { children: React.ReactNode }) {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -51,7 +52,9 @@ export default function Container({ children }: { children: React.ReactNode }) {
         handleDrawerToggle={handleDrawerToggle}
       ></NavBar>
       <Offset />
+      <Toolbar id="back-to-top-anchor" />
       <Main open={isDrawerOpen}>{children}</Main>
+      <ScrollTopButton></ScrollTopButton>
     </>
   );
 }
