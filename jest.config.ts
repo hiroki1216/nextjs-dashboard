@@ -78,19 +78,20 @@ const config: Config = {
   // ],
 
   // An array of file extensions your modules use
-  // moduleFileExtensions: [
-  //   "js",
-  //   "mjs",
-  //   "cjs",
-  //   "jsx",
-  //   "ts",
-  //   "tsx",
-  //   "json",
-  //   "node"
-  // ],
+  moduleFileExtensions: [
+    "js",
+    "mjs",
+    "cjs",
+    "jsx",
+    "ts",
+    "tsx",
+    "json",
+    "node",
+  ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/$1", // エイリアス `@` をプロジェクトの root ディレクトリにマッピング
     "\\.(css|less|scss)$": "<rootDir>/__tests__/mocks/styleMock.ts",
     "\\.(gif|ttf|eot|svg)$": "<rootDir>/__tests__/mocks/fileMock.ts",
   },
@@ -137,10 +138,10 @@ const config: Config = {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  // setupFiles: [],
+  setupFiles: ["<rootDir>/jest.setup.ts"],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
+  setupFilesAfterEnv: ["<rootDir>/jest.setupAfterEnv.ts"],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -158,15 +159,10 @@ const config: Config = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  // testMatch: [
-  //   "**/__tests__/**/*.[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).[tj]s?(x)"
-  // ],
+  testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  // testPathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  testPathIgnorePatterns: ["/node_modules/"],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -178,13 +174,12 @@ const config: Config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest", // ts-jest を使用してトランスパイル
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "/node_modules/",
-  //   "\\.pnp\\.[^\\/]+$"
-  // ],
+  // transformIgnorePatterns: ["/node_modules/", "\\.pnp\\.[^\\/]+$"],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
