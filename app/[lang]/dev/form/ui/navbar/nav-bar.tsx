@@ -7,7 +7,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import SettingsIcon from "@mui/icons-material/Settings";
 import {
   Box,
   IconButton,
@@ -23,6 +22,7 @@ import { useState } from "react";
 import AppLogo from "./app-logo";
 import CustomDrawer from "./custom-drawer";
 import CustomIconButton from "./shared/components/custom-icon-button";
+import SwipeableTemporaryDrawer from "./settings-swipeable-drawer";
 
 type Props = {
   isDrawerOpen: boolean;
@@ -148,12 +148,12 @@ export default function NavBar(props: Props) {
           title={t("nav-bar:profile")}
         />
       </MenuItem>
-      <MenuItem onClick={() => {}}>
-        <CustomIconButton
-          icon={<SettingsIcon />}
-          aria-label="settings"
-          title={t("nav-bar:settings")}
-        />
+      {/* TODO ここで設定画面の表示を実装すること */}
+      {/* モバイル画面はダークモードとライトモードのスイッチを実装したい */}
+      <MenuItem>
+        <SwipeableTemporaryDrawer isDrawerOpen={false} anchor="right">
+          Settings is here.
+        </SwipeableTemporaryDrawer>
       </MenuItem>
     </Menu>
   );
@@ -203,11 +203,10 @@ export default function NavBar(props: Props) {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
             />
-            <CustomIconButton
-              icon={<SettingsIcon />}
-              aria-label="settings"
-              onClick={() => {}}
-            />
+            <SwipeableTemporaryDrawer isDrawerOpen={false} anchor="right">
+              {/* // TODO ここで設定画面の表示を実装すること */}
+              Settings is here.
+            </SwipeableTemporaryDrawer>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <CustomIconButton
