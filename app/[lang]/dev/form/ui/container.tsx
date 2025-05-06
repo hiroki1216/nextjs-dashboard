@@ -2,7 +2,7 @@
 import { DRAWER_WIDTH } from "@/app/constants/styles";
 import { styled, Toolbar } from "@mui/material";
 import { useState } from "react";
-import NavBar from "./nav-bar";
+import NavBar from "./navbar/nav-bar";
 import ScrollTopButton from "./scroll-top-button";
 
 export default function Container({ children }: { children: React.ReactNode }) {

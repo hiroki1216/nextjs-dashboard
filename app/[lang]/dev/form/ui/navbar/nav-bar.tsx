@@ -7,8 +7,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import SettingsIcon from "@mui/icons-material/Settings";
 import {
-  Badge,
   Box,
   IconButton,
   Menu,
@@ -22,6 +22,7 @@ import {
 import { useState } from "react";
 import AppLogo from "./app-logo";
 import CustomDrawer from "./custom-drawer";
+import CustomIconButton from "./shared/components/custom-icon-button";
 
 type Props = {
   isDrawerOpen: boolean;
@@ -122,37 +123,37 @@ export default function NavBar(props: Props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>{t("nav-bar:messages")}</p>
+      <MenuItem onClick={() => {}}>
+        <CustomIconButton
+          icon={<MailIcon />}
+          badgeContent={4}
+          aria-label="show 4 new mails"
+          title={t("nav-bar:messages")}
+        />
       </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
+      <MenuItem onClick={() => {}}>
+        <CustomIconButton
+          icon={<NotificationsIcon />}
+          badgeContent={17}
           aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>{t("nav-bar:notifications")}</p>
+          title={t("nav-bar:notifications")}
+        />
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
+      <MenuItem onClick={handleMobileMenuOpen}>
+        <CustomIconButton
+          icon={<AccountCircle />}
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>{t("nav-bar:profile")}</p>
+          title={t("nav-bar:profile")}
+        />
+      </MenuItem>
+      <MenuItem onClick={() => {}}>
+        <CustomIconButton
+          icon={<SettingsIcon />}
+          aria-label="settings"
+          title={t("nav-bar:settings")}
+        />
       </MenuItem>
     </Menu>
   );
@@ -182,47 +183,40 @@ export default function NavBar(props: Props) {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
+            <CustomIconButton
+              icon={<MailIcon />}
+              badgeContent={4}
               aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
+              onClick={() => {}}
+            />
+            <CustomIconButton
+              icon={<NotificationsIcon />}
+              badgeContent={17}
               aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
+              onClick={() => {}}
+            />
+            <CustomIconButton
+              icon={<AccountCircle />}
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            />
+            <CustomIconButton
+              icon={<SettingsIcon />}
+              aria-label="settings"
+              onClick={() => {}}
+            />
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
+            <CustomIconButton
+              icon={<MoreIcon />}
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
+            />
           </Box>
         </Toolbar>
         <CustomDrawer
