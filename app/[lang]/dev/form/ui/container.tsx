@@ -1,6 +1,6 @@
 "use client";
 import { DRAWER_WIDTH } from "@/app/constants/styles";
-import { styled, Toolbar } from "@mui/material";
+import { Box, styled, Toolbar } from "@mui/material";
 import { useState } from "react";
 import NavBar from "./navbar/nav-bar";
 import ScrollTopButton from "./scroll-top-button";
@@ -21,7 +21,6 @@ export default function Container({ children }: { children: React.ReactNode }) {
   }>(({ theme }) => ({
     height: "100%",
     flexGrow: 1,
-    padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -46,7 +45,7 @@ export default function Container({ children }: { children: React.ReactNode }) {
   }));
 
   return (
-    <>
+    <Box sx={{ bgcolor: "background.default", height: "100vh" }}>
       <NavBar
         isDrawerOpen={isDrawerOpen}
         handleDrawerToggle={handleDrawerToggle}
@@ -55,6 +54,6 @@ export default function Container({ children }: { children: React.ReactNode }) {
       <Toolbar id="back-to-top-anchor" />
       <Main open={isDrawerOpen}>{children}</Main>
       <ScrollTopButton></ScrollTopButton>
-    </>
+    </Box>
   );
 }

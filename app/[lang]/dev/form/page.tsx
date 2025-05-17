@@ -5,6 +5,7 @@ import MyRating from "./shared/components/rating";
 import MyRatingNonCtlState from "./shared/components/rating-non-ctl-state";
 import MyRatingNonCtlWatch from "./shared/components/rating-non-ctl-watch";
 import type { DynamicFormRecordsObj } from "./shared/components/types/dynamic-form";
+import ThemedText from "./ui/themed-text";
 
 type PageProps = {
   params: Promise<{ lang: string }>;
@@ -26,25 +27,28 @@ export default async function Page({ params }: PageProps) {
   const { t } = await getTranslation(lang);
 
   return (
-    <main>
-      <Box
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      >
-        <div className="text-2xl font-bold">{t("common:title")}</div>
-        <div className="text-2xl font-bold">{lang}</div>
-        <Box sx={{ my: 6 }}>
-          <MyRating />
-        </Box>
-        <Box sx={{ my: 6 }}>
-          <MyRatingNonCtlState />
-        </Box>
-        <Box sx={{ my: 6 }}>
-          <MyRatingNonCtlWatch />
-        </Box>
-        <Box sx={{ my: 6 }}>
-          <DynamicForm records={recordsObj.records} />
-        </Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        backgroundColor: "background.default",
+      }}
+    >
+      <ThemedText>{t("common:title")}</ThemedText>
+      <ThemedText>{lang}</ThemedText>
+      <Box sx={{ my: 6 }}>
+        <MyRating />
       </Box>
-    </main>
+      <Box sx={{ my: 6 }}>
+        <MyRatingNonCtlState />
+      </Box>
+      <Box sx={{ my: 6 }}>
+        <MyRatingNonCtlWatch />
+      </Box>
+      <Box sx={{ my: 6 }}>
+        <DynamicForm records={recordsObj.records} />
+      </Box>
+    </Box>
   );
 }
