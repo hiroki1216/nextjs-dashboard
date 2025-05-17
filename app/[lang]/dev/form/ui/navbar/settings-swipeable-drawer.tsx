@@ -1,5 +1,4 @@
 "use client";
-import { DRAWER_WIDTH } from "@/app/constants/styles";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
@@ -48,12 +47,9 @@ export default function SwipeableTemporaryDrawer(props: Props) {
         >
           <Box
             sx={{
-              width:
-                anchor === "top" || anchor === "bottom" ? "auto" : DRAWER_WIDTH,
+              width: anchor === "top" || anchor === "bottom" ? "auto" : "100%",
             }}
             role="presentation"
-            onClick={toggleDrawer(false)}
-            onKeyDown={toggleDrawer(false)}
           >
             {children}
           </Box>
