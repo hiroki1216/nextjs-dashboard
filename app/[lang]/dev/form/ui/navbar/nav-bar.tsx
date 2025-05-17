@@ -21,8 +21,9 @@ import {
 import { useState } from "react";
 import AppLogo from "./app-logo";
 import CustomDrawer from "./custom-drawer";
-import CustomIconButton from "./shared/components/custom-icon-button";
 import SwipeableTemporaryDrawer from "./settings-swipeable-drawer";
+import CustomIconButton from "./shared/components/custom-icon-button";
+import ThemeModeToggleButton from "./theme-mode-toggle-button";
 
 type Props = {
   isDrawerOpen: boolean;
@@ -204,8 +205,7 @@ export default function NavBar(props: Props) {
               onClick={handleProfileMenuOpen}
             />
             <SwipeableTemporaryDrawer isDrawerOpen={false} anchor="right">
-              {/* // TODO ここで設定画面の表示を実装すること */}
-              Settings is here.
+              <ThemeModeToggleButton />
             </SwipeableTemporaryDrawer>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
